@@ -1,14 +1,14 @@
-import mongoose from 'mongoose' 
+import mongoose from "mongoose"; 
 
-export const connectDB = async () => {
-    try {
-        const connect = await mongoose.connect(process.env.MONGODB_URI); 
-        console.log(`MongoDB Connected : ${connect.connection.host}`); 
+export const connectDB = async () =>  {
+    try { 
+        const connectToDB = await mongoose.connect(process.env.MONGODB_URI); 
+        console.log(`MongoDB Connected Successfully ${connectToDB.connection.host}`); 
 
-    }catch (error) {
-        console.error(`Error : ${error.message}`); 
-        process.exit(1); 
+    }catch(error) { 
+      console.error("Message Error : ", error.message); 
+      process.exist(1); 
+    //  ! Here status code 1 of process means error or if we use 0 than that means success to connect with DB 
 
     }
-
 }
