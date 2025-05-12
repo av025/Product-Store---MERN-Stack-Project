@@ -7,7 +7,7 @@ import productRoutes from "./routes/product.route.js";
 // .env config 
 dotenv.config();  
 
-const Port = process.env.BACKEND_PORT; 
+const Port = process.env.BACKEND_PORT || 5000; 
 
 const app = express();   
 // Middle wares  

@@ -55,6 +55,12 @@ export const updateProduct = async (request, response) => {
 export const deleteProduct = async (request, response) => {
   const { id } = request.params;
 
+   if (!mongoose.Types.ObjectId.isValid(id)) {
+    return response
+      .status(404)
+      .json({ success: false, message: "Product not found !!!" });
+  }
+
   try {
     await Product.findByIdAndDelete(id);
     response
@@ -63,7 +69,7 @@ export const deleteProduct = async (request, response) => {
   } catch (error) {
     console.log(`Error Message : ${error.message}`);
     response
-      .status(400)
-      .json({ success: false, message: "Product was not found !!!" });
+      .status(500)
+      .json({ success: false, message: "Server Error" });
   }
 };
