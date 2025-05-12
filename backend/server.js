@@ -1,13 +1,13 @@
-// const express = require('express');  
-//* This was old way we can import with the help of common.js but now we can import with the help of ES6 Modules 
-
-import express, { request, response } from "express"; 
+/* This file server.js was the root file of our backend in which we setup the basic server to run our backend application  */
+import express from "express"; 
 import dotenv from "dotenv"; 
 import { connectDB } from "./config/database.js";
 import productRoutes from "./routes/product.route.js";
 
 // .env config 
-dotenv.config(); 
+dotenv.config();  
+
+const Port = process.env.BACKEND_PORT; 
 
 const app = express();   
 // Middle wares  
@@ -16,7 +16,7 @@ app.use("/api/products",productRoutes)
 
 
 // Server Listing 
-app.listen(5000, () => {
+app.listen(Port, () => {
     connectDB(); 
-    console.log("Your Server was Started at localhost:5000"); 
+    console.log(`Your Server was Started at localhost:${Port}`); 
 })

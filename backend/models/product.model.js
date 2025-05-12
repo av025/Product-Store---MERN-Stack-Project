@@ -1,3 +1,6 @@
+/*  This File product.model.js in which we are creating the schema of our products Database and than create Model of our Products to store data in our MongoDB   */ 
+
+
 import mongoose from "mongoose"; 
 
 const productSchema =  new mongoose.Schema({
@@ -14,10 +17,9 @@ const productSchema =  new mongoose.Schema({
         require: true
     }
 }, {
-    timestamps: true //* When we give timestamps: true so it give info about createdAt and updatedAt 
+    timestamps: true
 }) 
 
 const Product = mongoose.model('Product', productSchema); 
-//* Here we create The DB which name was Product 
 
 export default Product;
