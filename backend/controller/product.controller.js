@@ -1,6 +1,7 @@
 /*  In this File product.controller.js we create the controllers to get action on API whenever we client hit on the api or we do api call of the products 
 */
 import Product from "../models/product.model.js";
+import mongoose from "mongoose"; 
 
 export const getAllProducts = async (request, response) => {
   try {
