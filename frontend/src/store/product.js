@@ -2,9 +2,8 @@ import { create } from "zustand";
 
 export const useProductStore = create((set) => ({
   products: [],
-  setProducts: set((products) => {
-    products;
-  }),
+ setProducts: (products) => set({ products }),
+
   createProduct: async (newProduct) => {
     if (!newProduct.name || !newProduct.price || !newProduct.img) {
       return { success: false, message: "Please fill in all fields !!!" };
@@ -18,7 +17,7 @@ export const useProductStore = create((set) => ({
       body: JSON.stringify(newProduct),
     });
 
-    const data = response.json();
+    const data = await response.json();
     set((state) => ({ products: [...state.products, data.data] }));
 
     return { success: true, message: "Product Created Successfully" };
@@ -46,21 +45,24 @@ export const useProductStore = create((set) => ({
   },
   updateProduct: async (pId, updatedProduct) => {
     const response = await fetch(`/api/products/${pId}`, {
-      method:"PUT",
+      method: "PUT",
       headers: {
-        "Content-Type":"application/json", 
-
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify(updatedProduct)
-    }); 
+      body: JSON.stringify(updatedProduct),
+    });
 
     const data = await response.json();
-    if(!data.success) {
-      return {success: false , message: data.message}
-    } 
+    if (!data.success) {
+      return { success: false, message: data.message };
+    }
 
-    set(state => ({products:state.products.map(product => product._id === pId ? data.data : product)})); 
+    set((state) => ({
+      products: state.products.map((product) =>
+        product._id === pId ? data.data : product
+      ),
+    }));
 
     return { success: true, message: data.message };
-  }
+  },
 }));
