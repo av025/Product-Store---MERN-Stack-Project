@@ -1,1 +1,1 @@
-# Product Store - MERN STACK Project 
+# Product Store - Reactjs Chakra UI, React-Router-DOM, Nodejs,  Expressjs, MongoDB, Zustand 

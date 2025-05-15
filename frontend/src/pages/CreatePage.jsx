@@ -17,16 +17,16 @@ const CreatePage = () => {
     name: "",
     price: "",
     img: "",
-  });  
+  });   
+
+   const bg = useColorModeValue("white", "gray.800");
 
  const { createProduct }= useProductStore(); 
 
  const toast = useToast();
 
   const addNewProduct = async () => {
-    const {success , message} = await createProduct(newProduct) 
-    console.log("Success : ", success); 
-    console.log("Message : ", message); 
+    const {success , message} = await createProduct(newProduct); 
 
     if(!success) {
         toast({
@@ -58,7 +58,7 @@ const CreatePage = () => {
         </Heading>
         <Box
           w={"full"}
-          bg={useColorModeValue('"white', "gray.800")}
+          bg={bg}
           p={6}
           rounded={"lg"}
           shadow={"md"}
